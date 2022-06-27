@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 // import yerbaMate from '../../assets/yerba-mate.webp';
 
 //const ItemListContainer = ({greeting, children}) => {
@@ -18,11 +18,16 @@ const ItemListContainer = ({greeting, children}) => {
   const cambiarColor = () => {
 //    color = "red";
 //    console.log(color)
-    setColor("navy")
+    if (color === "navy") setColor("brown")
+    else setColor("navy")
   }
 
+  useEffect(() => {
+    console.log("Se montó/actualizó el componente")
+  }, [color])
+
   return(
-    <div>
+    <div style={{backgroundColor: color}}>
       {/* {children} */}
       <p>{greeting}</p>
       <p>{color}</p>
