@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import './App.css';
+// import Input from './components/Input';
+import NavBar from './components/NavBar';
+import ItemListContainer from './containers/ItemListContainer';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+function App() {
+
+  return (
+    <div className='container'>
+      <NavBar/>
+      <ItemListContainer greeting="Hola Coders!">
+        <h2>Este es el item list container</h2>
+      </ItemListContainer>
+      {/* <Input valorPlaceholder={"Hola"} title={"cómo estás?"}/>
+      <Input valorPlaceholder={"Hola"} title={"cómo estás?"}/> */}
+    </div>
+  );
+}
+
+export default App
