@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { HiShoppingCart } from 'react-icons/hi';
+import './style.css';
 
 const CartWidget = () => {
   return (

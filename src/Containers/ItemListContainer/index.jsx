@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import ItemCount from '../../components/ItemCount';
+import ItemList from '../../components/ItemList';
 
 const ItemListContainer = ({greeting, children}) => {
   const [color, setColor] = useState ("brown");
@@ -22,18 +23,43 @@ const ItemListContainer = ({greeting, children}) => {
     }
   }, [])
 
-  const handleAdd = () => {
-    console.log("Se agregó al carrito")
+  useEffect(() => {
+
+    const [productos, setProductos] = useState(null)
+
+    const getProductos = async() => {
+      try{
+        const response = await fetch('/mocks/data.json');
+        const data = await response.json();
+        console.log(data);
+        setProductos(data);
+      } catch (error) {
+        console.log("Hubo un error: ");
+        console.log(error);
+      }
+    }
+
+    getProductos()
+
+  }, [])
+
+  console.log(productos);
+
+  const handleAdd = (count) => {
+    console.log(`Se agregaron al carrito ${count} productos`)
   }
-  
+
   return(
     <div style={{backgroundColor: color}}>
       {/* {children} */}
       <p>{greeting}</p>
       <p>{color}</p>
-      <button> onClick={cambiarColor}
-        Cambair el color a red
+      <button onClick={cambiarColor}> 
+        Cambiar el color a red
       </button>
+      <ItemList products={productos}/>
+      :
+      null
       <ItemCount handleAdd={handleAdd} initialStock={5}/>
     </div>
   )
