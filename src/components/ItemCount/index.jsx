@@ -2,19 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import './style.css';
 
-initialStock = 10
-
 const ItemCount = ({handleAdd, initialStock}) => {
 
-    const [counter, setCounter] = useState(initialStock)
-    counter=1
+    const [counter, setCounter] = useState(1)
 
     const onAdd = () => {
         if (counter<initialStock){
             setCounter(counter + 1)
         }else{
             setCounter(counter)
-            alert("Solo quedan " & {counter} & " unidades en stock")
+            alert("Solo quedan " + {counter} + " unidades en stock")
         }
     }
 
@@ -26,7 +23,6 @@ const ItemCount = ({handleAdd, initialStock}) => {
         }
     }
 
-    setCounter(initialStock)
     return(
         <div>
             <p>{counter}</p>
