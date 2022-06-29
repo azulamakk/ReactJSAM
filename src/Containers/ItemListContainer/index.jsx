@@ -21,6 +21,9 @@ const ItemListContainer = ({greeting, children}) => {
     }
   }, [])
 
+  const handleAdd = () => {
+    console.log("Se agregó al carrito")
+  }
   return(
     <div style={{backgroundColor: color}}>
       {/* {children} */}
@@ -29,6 +32,7 @@ const ItemListContainer = ({greeting, children}) => {
       <button> onClick={cambiarColor}
         Cambair el color a red
       </button>
+      <ItemCount handleAdd={handleAdd}/>
     </div>
   )
 }
