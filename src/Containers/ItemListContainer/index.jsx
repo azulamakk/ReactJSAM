@@ -1,16 +1,5 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-// import yerbaMate from '../../assets/yerba-mate.webp';
-
-//const ItemListContainer = ({greeting, children}) => {
-//  return (
-//    <div>
-//        {/* {children} */}
-//        <p>{greeting}</p>
-//        <img src='./assets/tiendaFisica.jpeg' alt="disquera"/>
-//    </div>
-//  )
-//}
 
 const ItemListContainer = ({greeting, children}) => {
   const [color, setColor] = useState ("brown");
@@ -25,6 +14,12 @@ const ItemListContainer = ({greeting, children}) => {
   useEffect(() => {
     console.log("Se montó/actualizó el componente")
   }, [color])
+
+  useEffect(() => {
+    return () => {
+      console.log("Se está desmontando el ItemListContainer");
+    }
+  }, [])
 
   return(
     <div style={{backgroundColor: color}}>
