@@ -2,25 +2,34 @@ import React from 'react';
 import { useState } from 'react';
 import './style.css';
 
+initialStock = 10
+
 const ItemCount = ({handleAdd, initialStock}) => {
 
-    initialStock = 5
-
-
     const [counter, setCounter] = useState(initialStock)
+    counter=1
 
     const onAdd = () => {
-        setCounter(counter + 1)
+        if (counter<initialStock){
+            setCounter(counter + 1)
+        }else{
+            setCounter(counter)
+            alert("Solo quedan " & {counter} & " unidades en stock")
+        }
     }
 
     const onDecrement = () => {
-        setCounter(counter - 1)
+        if (counter<1){
+            alert("Por favor seleccione una cantidad valida")
+        }else{
+            setCounter(counter - 1)
+        }
     }
-    
-    counter=initialStock
+
+    setCounter(initialStock)
     return(
         <div>
-            <p>{count}</p>
+            <p>{counter}</p>
             <button onClick={onAdd}>+</button>
             <button onClick={onDecrement}>-</button>
             <button onClick={handleAdd}>Agregar al carrito</button>
@@ -28,20 +37,4 @@ const ItemCount = ({handleAdd, initialStock}) => {
     )
 }
 
-ItemCount()
-//export default function App() {
-//  const [counter, setCounter] = React.useState({ clicks:0, date: ''})
-//  const totalCounter = () => {
-//    const date = new Date().toLocaleString();
-//    setCounter({ clicks: counter.clicks + 1, date:date }) 
-//  }
-//
-//  return(
-//    <div>
-//      <p>{counter}</p>
-//      <button onClick={totalCounter}>Click me!</button>
-//      <p>{counter.clicks}</p>
-//      <p>{counter.date}</p>
-//    </div>
-//  )
-//}
+export default ItemCount;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import ItemCount from '../../components/ItemCount';
 
 const ItemListContainer = ({greeting, children}) => {
   const [color, setColor] = useState ("brown");
