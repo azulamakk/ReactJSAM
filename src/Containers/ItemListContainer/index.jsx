@@ -23,13 +23,13 @@ const ItemListContainer = ({greeting, children}) => {
     }
   }, [])
 
+  const [productos, setProductos] = useState(null)
+  
   useEffect(() => {
-
-    const [productos, setProductos] = useState(null)
 
     const getProductos = async() => {
       try{
-        const response = await fetch('/mocks/data.json');
+        const response = await fetch('./mocks/productos.json');
         const data = await response.json();
         console.log(data);
         setProductos(data);
@@ -57,9 +57,11 @@ const ItemListContainer = ({greeting, children}) => {
       <button onClick={cambiarColor}> 
         Cambiar el color a red
       </button>
-      <ItemList products={productos}/>
-      :
-      null
+      {productos.length > 0 ?
+        <ItemList products={productos}/>
+        :
+        null
+      }
       <ItemCount handleAdd={handleAdd} initialStock={5}/>
     </div>
   )
