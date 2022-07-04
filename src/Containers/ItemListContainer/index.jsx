@@ -23,7 +23,7 @@ const ItemListContainer = ({greeting, children}) => {
     }
   }, [])
 
-  const [productos, setProductos] = []
+  const [productos, setProductos] = useState([])
   
   useEffect(() => {
 
@@ -57,10 +57,10 @@ const ItemListContainer = ({greeting, children}) => {
       <button onClick={cambiarColor}> 
         Cambiar el color a red
       </button>
-      {productos.length > 0 ?
+      {productos.length !== 0 ?
         <ItemList products={productos}/>
         :
-        null
+        <p>Loading..</p>
       }
       <ItemCount handleAdd={handleAdd} initialStock={5}/>
     </div>

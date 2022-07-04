@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer'
 
 function App() {
     
@@ -23,8 +24,9 @@ function App() {
       null
       }
       <button onClick={onHideContainer}>Esconder ItemListContainer</button>
+      <ItemDetailContainer/>
     </div>
   );  
 }
   
-  export default App
+export default App
