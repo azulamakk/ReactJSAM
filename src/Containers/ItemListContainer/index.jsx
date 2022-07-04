@@ -23,13 +23,13 @@ const ItemListContainer = ({greeting, children}) => {
     }
   }, [])
 
-  const [productos, setProductos] = useState(null)
+  const [productos, setProductos] = []
   
   useEffect(() => {
 
     const getProductos = async() => {
       try{
-        const response = await fetch('./mocks/productos.json');
+        const response = await fetch('/mocks/productos.json');
         const data = await response.json();
         console.log(data);
         setProductos(data);

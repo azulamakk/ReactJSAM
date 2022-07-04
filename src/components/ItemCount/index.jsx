@@ -11,7 +11,7 @@ const ItemCount = ({handleAdd, initialStock}) => {
             setCounter(counter + 1)
         }else{
             setCounter(counter)
-            alert("Solo quedan " + {counter} + " unidades en stock")
+            alert("Solo quedan " + counter + " unidades en stock")
         }
     }
 
