@@ -15,7 +15,8 @@ const ItemDetailContainer = () => {
             try {
                 const response = await fetch('/mocks/productos.json')
                 const data = await response.json();
-                setProductDetail(data)
+                const producto = data.find(item => item.id === 1)
+                setProductDetail(producto)
             } catch (error) {
                 console.log(error)
                 setError(error.message)
