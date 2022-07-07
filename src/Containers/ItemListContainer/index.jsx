@@ -1,70 +1,51 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import ItemCount from '../../components/ItemCount';
-import ItemList from '../../components/ItemList';
+import { useParams } from 'react-router-dom';
 
-const ItemListContainer = ({greeting, children}) => {
-  const [color, setColor] = useState ("brown");
+const [productos, setProductos] = useState([])
+const [productosFiltrados, setProductosFiltrados] = useState([])
 
-  const cambiarColor = () => {
-//    color = "red";
-//    console.log(color)
-    if (color === "navy") setColor("brown")
-    else setColor("navy")
+const params = useParams()
+
+console.log(params);
+
+useEffect(() => {
+
+  const getProductos = async () => {
+    try {
+      const response = await fetch('/mocks/productos.json');
+      const data = await response.json();
+      setProductos(data);
+      setProductosFiltrados(data)
+    } catch (error) {
+      console.log("Hubo un error: ");
+      console.log(error);
+    }
   }
 
-  useEffect(() => {
-    console.log("Se montó/actualizó el componente")
-  }, [color])
+  getProductos()
 
-  useEffect(() => {
-    return () => {
-      console.log("Se está desmontando el ItemListContainer");
-    }
-  }, [])
+}, [])
 
-  const [productos, setProductos] = useState([])
-  
-  useEffect(() => {
-
-    const getProductos = async() => {
-      try{
-        const response = await fetch('/mocks/productos.json');
-        const data = await response.json();
-        console.log(data);
-        setProductos(data);
-      } catch (error) {
-        console.log("Hubo un error: ");
-        console.log(error);
-      }
-    }
-
-    getProductos()
-
-  }, [])
-
-  console.log(productos);
-
-  const handleAdd = (count) => {
-    console.log(`Se agregaron al carrito ${count} productos`)
+useEffect(() => {
+  if (params?.categoryId) {
+    const productosFiltrados = productos.filter(producto => producto.category === params.categoryId)
+    setProductosFiltrados(productosFiltrados)
+  } else {
+    setProductosFiltrados(productos)
   }
+}, [params, productos])
 
-  return(
-    <div style={{backgroundColor: color}}>
-      {/* {children} */}
-      <p>{greeting}</p>
-      <p>{color}</p>
-      <button onClick={cambiarColor}> 
-        Cambiar el color a red
-      </button>
-      {productos.length !== 0 ?
-        <ItemList products={productos}/>
-        :
-        <p>Loading..</p>
-      }
-      <ItemCount handleAdd={handleAdd} initialStock={5}/>
-    </div>
-  )
-}
+console.log(productos);
+
+return (
+  <div>
+    {productos.length !== 0 ?
+      <ItemList products={productosFiltrados} />
+      :
+      <p>Loading...</p>
+    }
+  </div>
+)
 
 export default ItemListContainer

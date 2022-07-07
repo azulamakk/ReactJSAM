@@ -1,31 +1,24 @@
-import { useState } from 'react';
+
 import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer'
+import ItemDetailContainer from './components/ItemDetail'
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import NotFound from './components/NotFound';
 
 function App() {
-    
-  const [containerVisible, setContainerVisible] = useState(true)
-  
-  const onHideContainer = () => {
-    setContainerVisible(false)
-  }
 
   return (
-    <div className='container'>
-      <NavBar/>
-      {containerVisible ?
-      <ItemListContainer greeting="Hola Coders!">
-        <h2>Este es el item list container</h2>
-      </ItemListContainer>
-      :
-      null
-      }
-      <button onClick={onHideContainer}>Esconder ItemListContainer</button>
-      <ItemDetailContainer/>
-    </div>
+    <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<ItemListContainer/>}></Route>
+          <Route path='/category/:categoryId' element={<ItemListContainer/>}></Route>
+          <Route path='/detail/:productId' element={<ItemDetailContainer/>}></Route>
+          <Route path='*' element={<NotFound/>}/>
+        </Routes>       
+    </BrowserRouter>
   );  
 }
   
