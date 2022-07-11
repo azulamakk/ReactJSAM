@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import ItemDetail from '../../components/ItemDetail'
-import {useParams} from 'react-router-dom';
 
-//Obtener los datos de un producto específico
-const ItemDetailContainer = () => {
+import NotFound from '././components/NotFound';
+import Cart from './containers/Cart'
+import ItemListContainer from './ItemListContainer';
 
-    const [productDetail, setProductDetail] = useState({})
-    const params = useParams()
-
-    console.log(params);
-
-    useEffect(()=> {
-        const getProductos = async () => {
-            try {
-                const response = await fetch('/mocks/productos.json')
-                const data = await response.json();
-                const producto = data.find(item => item.id === 1)
-                setProductDetail(producto)
-            } catch (error) {
-                console.log(error)
-                setError(error.message)
-            }
-        }
-        getProductos();
-
-    }, [params])
+function App() {
 
     return (
-        Object.keys(productDetail).length !== 0 ?
-        <ItemDetail product={productDetail}/>
-        :
-        <p>Loading...</p>
+        <BrowserRouter>
+            <NavBar/>
+            <Routes>
+                <Route path='/'></Route>
+                <Route path='/category/:categoryId' element={<ItemListContainer/>}></Route>
+                <Route path='/detail/:productId' element={<ItemDetailContainer/>}></Route>
+                <Route path='/cart' element={<Cart/>}></Route>
+                <Route path='*' element={<NotFound/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 

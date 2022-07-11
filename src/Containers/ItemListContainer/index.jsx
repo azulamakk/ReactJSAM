@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ModalConEscape from '././components/ModalConEsc';
+import ButtonCount from '././components/ButtonCount';
+import InputCount from '././components/InputCount';
 
 const [productos, setProductos] = useState([])
 const [productosFiltrados, setProductosFiltrados] = useState([])
+const [modalVisible, setModalVisible] = useState(true)
 
 const params = useParams()
-
-console.log(params);
 
 useEffect(() => {
 
@@ -37,6 +39,13 @@ useEffect(() => {
 }, [params, productos])
 
 console.log(productos);
+
+const handleConfirm = (quantity) => {
+  console.log("Se agregó la cantidad: " + quantity);
+}
+const type = "input"
+
+const Count = type === "button" ? ButtonCount : InputCount;
 
 return (
   <div>
