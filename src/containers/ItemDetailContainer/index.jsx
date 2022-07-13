@@ -1,21 +1,35 @@
+import React, { useEffect, useState } from 'react'
+import ItemDetail from '../../components/ItemDetail';
+import {useParams} from 'react-router-dom';
 
-import NotFound from '././components/NotFound';
-import Cart from './containers/Cart'
-import ItemListContainer from './ItemListContainer';
+//Obtener los datos de un producto específico
+const ItemDetailContainer = () => {
 
-function App() {
+    const [productDetail, setProductDetail] = useState({})
+
+    const params = useParams()
+
+    console.log(params);
+
+    useEffect(()=> {
+        const getProductos = async () => {
+            try {
+                const response = await fetch(`https://fakestoreapi.com/products/${params.productId}`)
+                const data = await response.json();
+                setProductDetail(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getProductos();
+
+    }, [params])
 
     return (
-        <BrowserRouter>
-            <NavBar/>
-            <Routes>
-                <Route path='/'></Route>
-                <Route path='/category/:categoryId' element={<ItemListContainer/>}></Route>
-                <Route path='/detail/:productId' element={<ItemDetailContainer/>}></Route>
-                <Route path='/cart' element={<Cart/>}></Route>
-                <Route path='*' element={<NotFound/>}/>
-            </Routes>
-        </BrowserRouter>
+        Object.keys(productDetail).length !== 0 ?
+        <ItemDetail product={productDetail}/>
+        :
+        <p>Loading...</p>
     )
 }
 
