@@ -1,9 +1,8 @@
-import React from "react";
 import React, { useContext } from 'react';
-import CartWidget from './CartWidget';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { Shop } from '././context/ShopContext';import './style.css';
+import { Shop } from '.ShopProvider';
+import './style.css';
 
 const NavBar = () => {
 

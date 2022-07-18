@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Shop} from '././context/ShopContext'
-import ButtonCount from '../ButtonCount';
+import {Shop} from './context/ShopProvider'
+import ButtonCount from './ButtonCount';
 import "./style.css"
 
 const ItemDetail = ({ producto }) => {
@@ -30,7 +30,7 @@ const ItemDetail = ({ producto }) => {
             <img src={producto.imag}/>
             <p>{producto.artista}</p>
             {!qtyAdded ?
-                <ButtonCount onConfirm={handleConfirm} maxQuantity={product.stock} />
+                <ButtonCount onConfirm={handleConfirm} maxQuantity={producto.stock} />
                 :
                 <button onClick={handleTerminate}>Terminar compra</button>
             }
