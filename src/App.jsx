@@ -5,9 +5,9 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer'
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import ShopProvider from './containers/context';
 import NotFound from './components/NotFound';
 import Cart from './containers/Cart'
-import ShopProvider from './context/ShopContext';
 
 function App() {
  

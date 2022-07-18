@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ItemList from '././components/ItemList';
 import { useParams } from 'react-router-dom';
-import ModalConEscape from '././components/ModalConEsc';
+import ModalConEscape from '././components/ModalConEsc'
 import ButtonCount from '././components/ButtonCount';
 import InputCount from '././components/InputCount';
 
