@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {Shop} from './context/ShopContext'
-import ButtonCount from 'ButtonCount';
+import {Shop} from '../context'
+import ButtonCount from '../ButtonCount';
 import "./style.css"
 
 const ItemDetail = ({ producto }) => {

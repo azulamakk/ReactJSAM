@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ItemList from '././components/ItemList';
+import ItemList from '../../components/ItemList';
 import { useParams } from 'react-router-dom';
-import ModalConEscape from '././components/ModalConEsc'
-import ButtonCount from '././components/ButtonCount';
-import InputCount from '././components/InputCount';
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ producto }) => {
 
   const [productos, setProductos] = useState([])
   const [productosFiltrados, setProductosFiltrados] = useState([])
@@ -48,8 +45,6 @@ const ItemListContainer = ({ greeting }) => {
     console.log("Se agregó la cantidad: " + quantity);
   }
   const type = "input"
-
-  const Count = type === "button" ? ButtonCount : InputCount;
 
   return (
     <div>

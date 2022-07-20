@@ -1,7 +1,7 @@
 import './style.css';
 import React, { useContext } from 'react'
-import { Shop } from '././context/ShopContext'
-import Item from './Item'
+import { Shop } from '../context'
+import Item from '../Item'
 
 const ItemList = ({ productos }) => {
 

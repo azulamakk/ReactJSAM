@@ -32,7 +32,7 @@ const ShopProvider = ({ children }) => {
     }
 
     return (
-                <Shop.Provider value={{estadoA, setEstadoA, addItem, cart}}>
+                <Shop.Provider value={{estadoA, setEstadoA, addItem, removeItem, cart}}>
             {children}
         </Shop.Provider>
     )

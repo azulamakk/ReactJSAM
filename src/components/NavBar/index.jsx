@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import './styles.css';
 import { Link } from 'react-router-dom';
-import { Shop } from '.ShopProvider';
-import './style.css';
+import { Shop } from '../context';
 
 const NavBar = () => {
 
