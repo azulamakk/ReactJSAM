@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import ItemList from '../../components/ItemList';
-import { useParams } from 'react-router-dom';
+import ModalConEscape from '../../components/ModalConEsc';
+import ButtonCount from '../../components/ButtonCount';
+import InputCount from '../../components/InputCount';
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from '../../firebase/config';
 
 const ItemListContainer = ({ producto }) => {
 
@@ -16,10 +18,16 @@ const ItemListContainer = ({ producto }) => {
 
     const getProductos = async () => {
       try {
-        const response = await fetch('/mocks/productos.json');
-        const data = await response.json();
-        setProductos(data);
-        setProductosFiltrados(data)
+        const q = query(collection(db, "products"));
+        const querySnapshot = await getDocs(q);
+        const productos = []
+        querySnapshot.forEach((doc) => {
+          productos.push({id: doc.id, ...doc.data()})
+        });
+
+        console.log(productos);
+        setProductos(productos);
+        setProductosFiltrados(productos);
       } catch (error) {
         console.log("Hubo un error: ");
         console.log(error);
